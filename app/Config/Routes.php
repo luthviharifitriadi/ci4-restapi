@@ -32,6 +32,7 @@ $routes->set404Override();
 $routes->get('/', 'Home::index');
 
 $routes->resource('pegawai', ['controller' => 'PegawaiController']);
+$routes->post('pegawai/ubah/(:num)', 'PegawaiController::update/$1');
 /*
 $routes->get('/', 'Home::index');
 $routes->get('pegawai', 'PegawaiController::index');

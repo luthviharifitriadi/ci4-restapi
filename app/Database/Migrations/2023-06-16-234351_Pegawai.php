@@ -35,6 +35,10 @@ class Pegawai extends Migration
                 'type'       => 'VARCHAR',
                 'constraint' => '100',
             ],
+            'gambar' => [
+                'type'       => 'VARCHAR',
+                'constraint' => '128',
+            ],
             'created_at' => [
                 'type' => 'DATETIME',
                 'null' => true,
