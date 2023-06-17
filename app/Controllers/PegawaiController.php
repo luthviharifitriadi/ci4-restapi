@@ -30,7 +30,18 @@ class PegawaiController extends ResourceController
      */
     public function show($id = null)
     {
-        //
+
+         $data = [
+            'message' => 'success',
+            'pegawai_byid' => $this->model->orderBy('id', 'DESC')->find($id)
+        ];
+
+        if($data['pegawai_byid']== null){
+            return $this->failNotFound('Data pegawai tidak ditemukan');
+        }
+
+
+        return $this->respond($data, 200);
     }
 
     /**
