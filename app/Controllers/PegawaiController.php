@@ -113,6 +113,13 @@ class PegawaiController extends ResourceController
      */
     public function delete($id = null)
     {
-        //
+        $this->model->delete($id);
+
+        $response = [
+            'message' => 'Data Pegawai berhasil dihapus'
+        ];
+
+        return $this->respondDeleted($response);
+
     }
 }
