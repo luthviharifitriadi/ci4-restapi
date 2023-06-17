@@ -68,15 +68,7 @@ class PegawaiController extends ResourceController
         return $this->respondCreated($response);
     }
 
-    /**
-     * Return the editable properties of a resource object
-     *
-     * @return mixed
-     */
-    public function edit($id = null)
-    {
-        //
-    }
+
 
     /**
      * Add or update a model resource, from "posted" properties
@@ -85,7 +77,33 @@ class PegawaiController extends ResourceController
      */
     public function update($id = null)
     {
-        //
+           $rules = $this->validate([
+            'nama'      => 'required',
+            'jabatan'   => 'required',
+            'bidang'    => 'required',
+            'alamat'    => 'required',
+            'email'     => 'required',
+        ]);
+
+        if(!$rules){
+            $response = [
+                'message' => $this->validator->getErrors()
+            ];
+            return $this->failValidationErrors($response);
+        }
+        $this->model->update($id, [
+            'nama'      => esc($this->request->getVar('nama')),
+            'jabatan'   => esc($this->request->getVar('jabatan')),
+            'bidang'    => esc($this->request->getVar('bidang')),
+            'alamat'    => esc($this->request->getVar('alamat')),
+            'email'     => esc($this->request->getVar('email')),
+        ]);
+        $response = [
+            'message' => 'Data Pegawai berhasil diubah'
+        ];
+
+        return $this->respond($response, 200);
+
     }
 
     /**
